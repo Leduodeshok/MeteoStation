@@ -29,6 +29,7 @@ const uint8_t fleche[] PROGMEM = {
 };
 
 
+//////////////////////SETUP///////////////////////////////////////////////
 
 void setup() {
   Serial.begin(9600);
@@ -50,10 +51,6 @@ void loop() {
   } while( u8g.nextPage() );
 
 }
-
-
-
-
 
 
 

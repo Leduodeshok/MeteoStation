@@ -1,2 +1,190 @@
 Mon objectif de séance sera de rendre L'anémomètre et la girouette fonctiels
 
+Tout d'abord de la documentation sur comment fonctionne des Modules Grove car l'anémomètre fonctionne avec celui et des connecteurs RJ11
+Je trouve un site https://www.lextronic.fr/temperature-meteo/19999-capteur-anenometre.html
+M'expliquant le montage et pour faire le test (Eteindre la diode quand l'anémomètre tourne) vidéo montrant que cela fonctionne : https://youtu.be/Ru0aI_2J2dI 
+J'ai un peu modifier le code car ne fonctionner pas bien aus debut 
+
+Code pour allumer la diode :
+
+void setup() {
+  pinMode(4, OUTPUT);
+  pinMode(2, INPUT);
+  Serial.begin(9600);
+}
+// Boucle principale:
+void loop() {
+  
+  int BP = digitalRead(2); // Lecture du capteur
+  
+  if (BP == LOW) {
+    digitalWrite(4, HIGH); // Allume la Led
+    
+  }
+  else {
+    digitalWrite(4, LOW); // Eteind la Led
+    
+  }
+}
+
+Je me suis ensuite consacré a la girouette une ancienne élève m'a expliquer son fonctionnement et j'ai ensuite reussi a la faire fonctionner et ajuster suivant les valeurs que recevait l'arduino pour que le programme nous renvoi les points cardinaux 
+
+Code de la girouette 
+
+void setup() {
+  Serial.begin(9600);
+}
+void loop() {
+  int sensorValue = analogRead(A1);
+  Serial.print("La direction du vent est :");
+  if(sensorValue>200 && sensorValue<300){
+    Serial.print("SUD " );
+    Serial.println(sensorValue);
+  }
+  else if(sensorValue>100 && sensorValue<200){
+    Serial.print("SUD-EST ");
+    Serial.println(sensorValue);
+  }
+  else if(sensorValue>10 && sensorValue<100){
+    Serial.print("EST ");
+    Serial.println(sensorValue);
+  }
+  else if(sensorValue>400 && sensorValue<500){
+    Serial.print("NORD EST ");
+    Serial.println(sensorValue);
+  }
+  else if(sensorValue>750 && sensorValue<800){
+    Serial.print("NORD ");
+    Serial.println(sensorValue);
+  }
+  else if(sensorValue>800 && sensorValue<900){
+    Serial.print("NORD-OUEST");
+    Serial.println(sensorValue);
+  }
+  else if(sensorValue>900 && sensorValue<1023){
+    Serial.print("OUEST");
+    Serial.println(sensorValue);
+  }
+  else if(sensorValue>600 && sensorValue<700){
+    Serial.print("SUD-OUEST ");
+    Serial.println(sensorValue);
+  }
+  //Serial.println(sensorValue);
+  delay(100); 
+}
+
+Je me suis ensuite consacré de nouveau a l'anémomètre pour que maintenant il m'affiche la vitesse du vent je me suis aidé d'un donnateur allemand son site : http://www.aeq-web.com/?ref=arduinoide
+
+Code pour l'anémomètre :
+
+const int m_time = 1;  
+int wind_ct = 0;
+float wind = 0.0;
+unsigned long time = 0;
+
+void setup()
+{
+  Serial.begin(9600);
+  time = millis();
+}
+void loop()
+{
+  meassure();
+  Serial.print("VITESSE DU VENT ");
+  Serial.print(wind);       //Speed in Km/h
+  Serial.print(" km/h - ");
+  Serial.print(wind / 3.6); //Speed in m/s
+  Serial.println(" m/s");
+}
+void countWind() {
+  wind_ct ++;
+}
+void meassure() {
+  wind_ct = 0;
+  time = millis();
+  attachInterrupt(1, countWind, RISING);
+  delay(1000 * m_time);
+  detachInterrupt(1);
+  wind = (float)wind_ct / (float)m_time * 2.4/3;
+}
+
+cela fonctionnement parfaitement j'ai just du modifier la dernier ligne car les valeurs étaient biaisés car compté triple j'ai donc divisé le resultat par 3
+
+Pour finir j'ai regroupé les 2 codes et le montage (voir photo) pour que cela soit plus propre
+
+Code final :
+
+const int m_time = 1;  
+int wind_ct = 0;
+float wind = 0.0;
+unsigned long time = 0;
+
+void setup() {
+  Serial.begin(9600);
+  time = millis();
+}
+
+void loop() {
+  meassure();
+  girouette();
+  delay(100);
+}
+
+void countWind() {
+  wind_ct ++;
+}
+
+void meassure() {
+  wind_ct = 0;
+  time = millis();
+  attachInterrupt(1, countWind, RISING);
+  delay(1000 * m_time);
+  detachInterrupt(1);
+  wind = (float)wind_ct / (float)m_time * 2.4/3;
+  Serial.print("VITESSE DU VENT ");
+  Serial.print(wind);       //Speed in Km/h
+  Serial.print(" km/h - ");
+  Serial.print(wind / 3.6); //Speed in m/s
+  Serial.println(" m/s");
+}
+
+void girouette(){
+  int sensorValue = analogRead(A1);
+  Serial.print("La direction du vent est :");
+  if(sensorValue>200 && sensorValue<300){
+    Serial.print("SUD " );
+    Serial.println(sensorValue);
+  }
+  else if(sensorValue>100 && sensorValue<200){
+    Serial.print("SUD-EST ");
+    Serial.println(sensorValue);
+  }
+  else if(sensorValue>10 && sensorValue<100){
+    Serial.print("EST ");
+    Serial.println(sensorValue);
+  }
+  else if(sensorValue>400 && sensorValue<500){
+    Serial.print("NORD EST ");
+    Serial.println(sensorValue);
+  }
+  else if(sensorValue>750 && sensorValue<800){
+    Serial.print("NORD ");
+    Serial.println(sensorValue);
+  }
+  else if(sensorValue>800 && sensorValue<900){
+    Serial.print("NORD-OUEST");
+    Serial.println(sensorValue);
+  }
+  else if(sensorValue>900 && sensorValue<1023){
+    Serial.print("OUEST");
+    Serial.println(sensorValue);
+  }
+  else if(sensorValue>600 && sensorValue<700){
+    Serial.print("SUD-OUEST ");
+    Serial.println(sensorValue);
+  }
+}
+
+Tout marche plutot bien, il reste quand meme a faire des ajustements sur la girouette car peu precise sur les directions.
+Et quand on debranche puis rebranche la carte les valeurs ont tendance a se renitialiser.
+Ce qui va changer changer les directions.

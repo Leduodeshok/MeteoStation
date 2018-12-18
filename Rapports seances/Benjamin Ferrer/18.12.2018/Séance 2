@@ -1,7 +1,8 @@
 Mon objectif de séance sera de rendre L'anémomètre et la girouette fonctiels
 
 Tout d'abord de la documentation sur comment fonctionne des Modules Grove car l'anémomètre fonctionne avec celui et des connecteurs RJ11
-Je trouve un site <a href="https://www.lextronic.fr/temperature-meteo/19999-capteur-anenometre.html">site pour le montage</a>
+Je trouve un site :
+https://www.lextronic.fr/temperature-meteo/19999-capteur-anenometre.html
 M'expliquant le montage et pour faire le test (Eteindre la diode quand l'anémomètre tourne) vidéo montrant que cela fonctionne : https://youtu.be/Ru0aI_2J2dI 
 J'ai un peu modifier le code car ne fonctionner pas bien aus debut 
 
@@ -27,7 +28,9 @@ void loop() {
   }
 }
 
-Je me suis ensuite consacré a la girouette une ancienne élève m'a expliquer son fonctionnement et j'ai ensuite reussi a la faire fonctionner et ajuster suivant les valeurs que recevait l'arduino pour que le programme nous renvoi les points cardinaux 
+Je me suis ensuite consacré a la girouette une ancienne élève m'a expliquer son fonctionnement 
+et j'ai ensuite reussi a la faire fonctionner et ajuster suivant les valeurs que recevait l'arduino pour que le programme 
+nous renvoi les points cardinaux.
 
 Code de la girouette 
 
@@ -73,7 +76,9 @@ void loop() {
   delay(100); 
 }
 
-Je me suis ensuite consacré de nouveau a l'anémomètre pour que maintenant il m'affiche la vitesse du vent je me suis aidé d'un donnateur allemand son site : http://www.aeq-web.com/?ref=arduinoide
+Je me suis ensuite consacré de nouveau a l'anémomètre pour que maintenant il m'affiche la vitesse du vent je me suis aidé d'un donnateur
+allemand son site : 
+http://www.aeq-web.com/?ref=arduinoide
 
 Code pour l'anémomètre :
 
@@ -108,7 +113,9 @@ void meassure() {
   wind = (float)wind_ct / (float)m_time * 2.4/3;
 }
 
-cela fonctionnement parfaitement j'ai just du modifier la dernier ligne car les valeurs étaient biaisés car compté triple j'ai donc divisé le resultat par 3
+Cela fonctionnement parfaitement j'ai juste du modifier la dernier ligne, les valeurs étaient biaisés car compté triple.
+Comme l'anémomètrea possède 3 branches et que l'on utilise la fonction attachInterrupt l'arduino compté le resultat par 3.
+J'ai donc divisé le resultat par 3. 
 
 Pour finir j'ai regroupé les 2 codes et le montage (voir photo) pour que cela soit plus propre
 

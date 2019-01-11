@@ -195,3 +195,12 @@ void girouette(){
 Tout marche plutot bien, il reste quand meme a faire des ajustements sur la girouette car peu precise sur les directions.
 Et quand on debranche puis rebranche la carte les valeurs ont tendance a se renitialiser.
 Ce qui va changer changer les directions.
+
+/////////////////////Ecriture post seance////////////////
+
+Pour les indications Nord/EST ...de la girouette.
+le principe est que la girouette renvoie une plage de valeur ( c-a-d : quand elle est dans une certaine position elle renvoie des valeurs 
+entre 60-80 c'est un exemple)
+donc j'ai positionné la girouette dans les 8 positions de la boussole en prenant un Nord arbitraire comme la girouette est analogique cela 
+renvoie en 0 et 1023 donc pour les differentes directions j'ai choisie une plage de 100 valeurs.
+Le seul probleme de cette pratique c'est que la girouette est dependante de la position initial

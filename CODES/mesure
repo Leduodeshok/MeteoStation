@@ -1,0 +1,46 @@
+ecran lcd :
+  largeur : 5 cm
+  longueur 7.7cm
+  
+encodeur rotatif :
+  largeur : 1.1cm
+  longueur : 1.1cm
+  hauteur (en partant de la base metallique) : 2 cm
+  
+capteur temperature/humidité :
+  longueur :3.2 cm
+  largeur : 1.4 cm
+  hauteur : 0.7 cm
+  
+  boitier bleu :
+    longueur 1.6cm 
+    largeur 1.2 cm
+    hauteur : 0.6 
+  
+anemometre :
+  rayon : 8.8 cm
+  hauteur 5.2 cm 
+  
+girouette :
+  hauteur : 9cm
+  rayon :10 cm
+  
+base du T :
+  longueur : 49 cm
+  rayon ext : 1.2cm
+  rayon int : 0.9 cm
+
+mat du T:
+  longueur: 44cm
+  rayon ext : 1.2cm
+  rayon int : 0.9 cm
+
+cable (anemometre/girouette):
+  longueur : 0.5 cm
+  largeur : 0.2 cm
+  
+carte arduino + extention :
+    hauteur : 2.7cm
+    largeur : 6cmv
+    longueur : 7.6 cm
+    

@@ -1,4 +1,28 @@
 Pour cette séance j'avais pour objectif de rendre tous les instrument météorologique extérieur fonctionnels ensemble sur une même carte. 
 Le probleme etant que nous n'avons pas recu le pluviomètre 
 J'ai donc du me contenté de l'anémometre, de la girouette et du capteur humidité et temperature.
+Le code etant ci dessus j'ai du rajouter une delay de 1000ms dans la fonction principale pour laisser le sensor de temps de tout faire
 
+void humidity() {
+  sensors_event_t event;  
+  dht.temperature().getEvent(&event);
+  Serial.print("Temperature: ");
+  Serial.print(event.temperature);
+  Serial.println(" *C");
+  dht.humidity().getEvent(&event);
+  Serial.print("Humidity: ");
+  Serial.print(event.relative_humidity);
+  Serial.println("%");
+}
+
+et le montage est classique donc pas de difficulté particuliere
+Ainsi j'etais en charge de faire des rendu 3D des 2 boitiers celui interieur (Ecran + encodeur)
+et le boitier exterieur (tout les instrument : girouette, anémomètre, pluviomètre et capteur pression/temperature)
+j'ai donc fait de multiples mesures (dans le dossier mesures) pour avoir un rendu d'une bonne qualité et dans les bonnes dimensions
+mais suite un probleme de sauvegarde je n'ai que le rendu 3D du boitier interieur 
+
+Pour le rendu les cavité sont pour montrer ou va se placer les differents instrument
+le grand rectangle sera l'ecran LCD 
+le trou sera l'endroit ou l'on place l'encodeur 
+suite sur le cote arrière il y a 2 petits trou c'est pour faire passer les cables qui reliront les 2 cartes arduino pour qu'elle puisse 
+echanger entre elle

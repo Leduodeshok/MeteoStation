@@ -40,7 +40,10 @@ cable (anemometre/girouette):
   largeur : 0.2 cm
   
 carte arduino + extention :
-    hauteur : 2.7cm
-    largeur : 6cmv
-    longueur : 7.6 cm
-    
+  hauteur : 2.7cm
+  largeur : 6cmv
+  longueur : 7.6 cm
+
+cable classique :
+  largeur : 0.3
+  longueur : 0.3

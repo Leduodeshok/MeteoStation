@@ -70,9 +70,7 @@ Pour nous faciliter la tacher de coder cet ecran nous avons decider de passer pa
 -LCDML_condition; on ne modifie rien ici, il s'agit d'une page de la  
 			librairie qui permet de dire si oui ou non un item est affiché a l'ecran.
 
--LCDML_control; permet de controler de differente maniere la navigation, 			on se contente de mettre 
-			*#define _LCDML_CONTROL_cfg      3*
-
+-LCDML_control; permet de controler de differente maniere la navigation,on se contente de mettre *#define _LCDML_CONTROL_cfg      3*
 			qui dit que nous allons controler le menu avec un encodeur rotetif, ce menu declare donc que tourner vers la droite equivaut a aller en haut, vers la gauche a aller en bas, qu'un clique cours correspond a entrer, et qu'un clique long (+ de 800ms) correspond a retour.
 
 -LCDML_display_dynFunction; Menu qui gere la creation des fonction a 

@@ -46,3 +46,72 @@ Cette requête nous renvoi un texte en JSON :
 Qu'il faut ensuite parser, c’est-à-dire, découper de tel sorte a ne recuperer que les infos dont nous avons besoin.
 
 Une fois cela realiser il a fallut travailler sur la communication entre la carte arduino est l'ESP via du RX/TX entre ces deux cartes. Pour que cela soit possible il faut passer par un pont diviseur de tension sur la sortie TX de l'arduino afin d'abaisser la tension max de 5v a une tension de 3,3v pour eviter de griller l'ESP qui fonctionne, elle, en 3,3v.
+
+
+
+	COMPTE RENDU SEANCE 3 (11/01/19);
+
+Seance un peu compliqué..
+
+Avec mon binome nous avons bien avancé durant les semaines precedentes, de ce fait nous avons reussi a savoir comment fonctionnais chacun des capteur dont nous disposons afin de pouvoir mesurer la meteo locale (ayant personnellement traité la meteo en ligne dans le rapport de seance precedent). Vient donc l'etape delicate d'incorporer ces magnifique mesure a l'ecran 128x64 fournit, et la les choses ce compliquent...
+
+Pour nous faciliter la tacher de coder cet ecran nous avons decider de passer par une librairie genial, LCDmenulib2 (plus complette que la LCDmenulib1, logique). Lorsqu'on charge l'exemple de cette librairie compatible avec notre ecran on se retrouve face a une page avec 6 onglet;
+-LCDML_u8glib: le u8glib permet de gerer l'ecran donc tout ce qui touche 
+			a l'affichage de ligne, carré, texte,.... Dans cette partie on doit dans un premier temps entrer les n° des pins utilisés pour l'ecran sur l'arduino, ainsi que creer une "liste" qui permet l'affichage des menu et leur indentation, sous forme "d'ardre". On ajoute donc couche par couche les different item de menu
+			LCDML_add         (0  , LCDML_0         , 1  , "Meteo locale"     , mFunc_tem);       // this menu function can be found on "LCDML_display_menuFunction" tab
+  			LCDML_add         (1  , LCDML_0_1       , 1  , "Retour"           , mFunc_back);
+  			LCDML_add         (2  , LCDML_0         , 2  , "Meteo en Ligne"   , NULL); 
+ 			LCDML_add         (3  , LCDML_0_2       , 1  , "CHANGER"          , NULL);
+  			LCDML_addAdvanced (5  , LCDML_0_2_1     , 1  , "Code postale"     , 
+  			LCDML_add         (4  , LCDML_0_2       , 2  , "Retour"           , mFunc_back);
+  			cette liste permet d'afficher le menu de la photo ECRANMENU1_SEANCE3
+  			avec comme premiere couche meteo locale et meteo en ligne (LCDML_0)
+
+-LCDML_condition; on ne modifie rien ici, il s'agit d'une page de la  
+			librairie qui permet de dire si oui ou non un item est affiché a l'ecran.
+
+-LCDML_control; permet de controler de differente maniere la navigation, 			on se contente de mettre 
+			*#define _LCDML_CONTROL_cfg      3*
+
+			qui dit que nous allons controler le menu avec un encodeur rotetif, ce menu declare donc que tourner vers la droite equivaut a aller en haut, vers la gauche a aller en bas, qu'un clique cours correspond a entrer, et qu'un clique long (+ de 800ms) correspond a retour.
+
+-LCDML_display_dynFunction; Menu qui gere la creation des fonction a 
+			affichage dynamique , on s'en servira pour l'affichage du choix du code postale. Mais il me faudra encore un peu de temps pour comprendre le bon fonctionnement de cette partie.
+
+-LCDML_display_menu; On ne change rien ici, il s'agit de la partie qui 
+			gere l'affichage.
+
+-LCDML_display_menuFunction; Ici on peut implanter les fonctions pour les 			different capteur par exemple. 
+
+Dans la seance d'aujourd'hui c'est ce dernier onglet que j'ai modifier pour y implanter une fonction qui recuprer l'humidité et la temperature via le capteur DHT11 pour l'afficher sur l'ecran lorsqu'on est sur le menu principale et qu'on clique sur meteo locale. Le resultat est plutot satisfaisant; les deux données s'actualisent bien en temps reel et les données sont correctes (cf. photo ECRANMENU2_SEANCE3).
+
+Puisque l'affichage est une chaine de caractere dynamique j'utilise la fonction sprintf;
+
+//on recupere la temperature comme un entier
+dht.temperature().getEvent(&event);
+int temp=event.temperature;
+
+//on recupere l'humidité domme un entier
+dht.humidity().getEvent(&event);
+int humi=event.relative_humidity;
+
+//on declare deux chaine de caractere d'une longueur maximale de 20 caractere, pour l'humidité et la temperature
+char hum[20];
+char tem[20];
+
+//sprintf acualise en temps reel les chaine de caractere en remplacant le %d par temp ou humi respectivement dans les chaine tem et hum.
+sprintf (tem, "Temperature: %d *C", temp);
+sprintf (hum, "Humidite: %d prcts", humi);*
+
+par la suite on a plus qu'a affiché chacune de ces chaine de caractere a x=0 et y=h\*nb de ligne 
+
+ u8g.firstPage();
+*do {
+  u8g.drawStr( 0, (_LCDML_DISP_font_h * 1),tem);
+  u8g.drawStr( 0, (_LCDML_DISP_font_h * 2), hum);
+ } while( u8g.nextPage() );*
+
+
+
+
+

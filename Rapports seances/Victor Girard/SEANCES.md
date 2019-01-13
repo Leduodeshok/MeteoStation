@@ -104,11 +104,16 @@ sprintf (hum, "Humidite: %d prcts", humi);*
 par la suite on a plus qu'a affiché chacune de ces chaine de caractere a x=0 et y=h\*nb de ligne 
 
  u8g.firstPage();
+ 
 *do {
-  u8g.drawStr( 0, (_LCDML_DISP_font_h * 1),tem);
-  u8g.drawStr( 0, (_LCDML_DISP_font_h * 2), hum);
- } while( u8g.nextPage() );*
 
+  u8g.drawStr( 0, (_LCDML_DISP_font_h * 1),tem);
+  
+  u8g.drawStr( 0, (_LCDML_DISP_font_h * 2), hum);
+  
+ } while( u8g.nextPage() );*
+ 
+ le code est dans le dossier LCDML_u8glib.
 
 
 

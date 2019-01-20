@@ -114,7 +114,13 @@ par la suite on a plus qu'a affiché chacune de ces chaine de caractere a x=0 et
  } while( u8g.nextPage() );*
  
  le code est dans le dossier LCDML_u8glib.
+ 
+ 
+ 
+ 	COMPTE RENDU SEANCE 4 (18/01/19):
+	
+Aujourd'hui encore des difficultés..
+Avec la petite presentation en vu je me suis dis la veille, tient il faudrait que je pense a verifier si le programme pour l'ESP fonctionne bien . Quelle idee genial puisqu'il s'avere que notre premier ESP etait completement buguer est qu'il fonctionnait quand il avait envie. Je me suis donc atteler au debugage de ce dernier sans grand succes et malgré le nouvel ESP, pas de resultats probans nomplu, surement du a des erreurs dans mon programme qui marchait parfaitement il y a de ca la 1ere seance. Je vais revenir dessu durant la semaine prochaine pour tenter de resoudre ce probleme qui pourait s'averer tres enuyeux puisque L'ESP represente tout de meme la moitiée de notre projet.
+Apres m'etre battu avec l'ESP pendant bien 1h30 et ayant eu un semblant d'amelioration je suis passer a l'etude de l'affichage sur l'ecran 128x64 et encore la de grosses difficultés, notament dans la definition de fonction qui gererons la recuperation des infos locale et en ligne (via SoftwareSerial, dans le meme principe qu'avec le bluetooth).
 
-
-
-
+En clair, une seance qui n'a pas beaucoup avancé de mon coté, heureusement que benjamin a lui terminer la modelisations de nos boitier!

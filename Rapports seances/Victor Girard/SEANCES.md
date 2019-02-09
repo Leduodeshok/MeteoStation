@@ -127,37 +127,37 @@ En clair, une seance qui n'a pas beaucoup avancé de mon coté, heureusement que
 Pour notre projet et notamment sur la partie meteo en ligne j'aimerai que l'on puisse choisir la ville via un menu deffilent. Par chance la librairie que nous utilisons propose une fonctionnalité qui me permetterai de faire cela !
 
 Pour l'affichage d'un element sur l'ecran cela fonctionne par couche de menu le code ce presente de la sorte:
-void disp(){
- 
-  LCDML_add         (0  , LCDML_0         , 1  , "Meteo locale"     , mFunc_tem);      
-  LCDML_add         (1  , LCDML_0_1       , 1  , "Retour"           , mFunc_back);
-  LCDML_add         (2  , LCDML_0         , 2  , "Meteo en Ligne"   , NULL); 
-  LCDML_add         (3  , LCDML_0_2       , 1  , "CHANGER"          , NULL);
-  LCDML_addAdvanced (4  , LCDML_0_2_1     , 1  , NULL,         ""   , mCod_post, 0, _LCDML_TYPE_dynParam);
-  LCDML_add         (5  , LCDML_0_2_1     , 2  , "Retour"           , mFunc_back);
-  LCDML_add         (6  , LCDML_0_2       , 3  , "Retour"           , mFunc_back);
 
-}
+ 
+	  LCDML_add         (0  , LCDML_0         , 1  , "Meteo locale"     , mFunc_tem);      
+	  LCDML_add         (1  , LCDML_0_1       , 1  , "Retour"           , mFunc_back);
+	  LCDML_add         (2  , LCDML_0         , 2  , "Meteo en Ligne"   , NULL); 
+	  LCDML_add         (3  , LCDML_0_2       , 1  , "CHANGER"          , NULL);
+	  LCDML_addAdvanced (4  , LCDML_0_2_1     , 1  , NULL,         ""   , mCod_post, 0, _LCDML_TYPE_dynParam);
+	  LCDML_add         (5  , LCDML_0_2_1     , 2  , "Retour"           , mFunc_back);
+	  LCDML_add         (6  , LCDML_0_2       , 3  , "Retour"           , mFunc_back);
+
+
 Le premier parametre est juste le n° global de l'element, le 2eme est la couche precedente (LCDML_0 etant le root), le 3eme est le n° de l'element sur sa couche : par exemple on a Meteo locale (id global:0/id local:1) qui est sur la premiere couche avec Meteo en ligne (id global:2/id local:2). ces principes d'ID permettent d'attribuer un sous menu a un element en particulier, par exemple CHANGER est un element du sous menu de Meteo en Ligne, donc sa couche précédente est bien LCDML_0_2 (2 étant l'ID local de meteo en ligne).
 
 Pour permettre de creer un menu defilant on utilise LCDML_addAdvenced qui permettent d'ajouter des fonction a affichage dynamique sur un element du menu.
 Le code d'une telle fonction ressemble a ca, sachant que la le fonctionne sur le plan de l'affichage mais je n'arrive pas encore a le faire sauvgarder le nouveau code postale.
 
-void mCod_post(uint8_t line){
-//on initialise les variables necessaires pour l'affichage du message
-  String message = "";
-  String Ville = "Nice"; 
-  String CP = "";
+	void mCod_post(uint8_t line){
+	//on initialise les variables necessaires pour l'affichage du message
+	  String message = "";
+	  String Ville = "Nice"; 
+	  String CP = "";
 
 
-  //on initialise les variables pour le curseur
-  int pos=0;
-  int enc=0;
+	  //on initialise les variables pour le curseur
+	  int pos=0;
+	  int enc=0;
 
 
-  //verifie si le curseur est bien sur la ligne a contenu dynamique
-  if(line==LCDML.MENU_getCursorPos()){
-
+	  //verifie si le curseur est bien sur la ligne a contenu dynamique
+	  if(line==LCDML.MENU_getCursorPos()){
+  
   	//si on est sur la ligne on verifie s'il y a toute interaction avec un des boutons
     if(LCDML.BT_checkAny()){
 

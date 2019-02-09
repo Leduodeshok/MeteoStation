@@ -70,7 +70,7 @@ Pour nous faciliter la tacher de coder cet ecran nous avons decider de passer pa
 -LCDML_condition; on ne modifie rien ici, il s'agit d'une page de la  
 			librairie qui permet de dire si oui ou non un item est affiché a l'ecran.
 
--LCDML_control; permet de controler de differente maniere la navigation,on se contente de mettre *#define _LCDML_CONTROL_cfg      3*
+-LCDML_control; permet de controler de differente maniere la navigation,on se contente de mettre*#define _LCDML_CONTROL_cfg      3*
 			qui dit que nous allons controler le menu avec un encodeur rotetif, ce menu declare donc que tourner vers la droite equivaut a aller en haut, vers la gauche a aller en bas, qu'un clique cours correspond a entrer, et qu'un clique long (+ de 800ms) correspond a retour.
 
 -LCDML_display_dynFunction; Menu qui gere la creation des fonction a 
@@ -104,23 +104,118 @@ sprintf (hum, "Humidite: %d prcts", humi);*
 par la suite on a plus qu'a affiché chacune de ces chaine de caractere a x=0 et y=h\*nb de ligne 
 
  u8g.firstPage();
- 
 *do {
-
   u8g.drawStr( 0, (_LCDML_DISP_font_h * 1),tem);
-  
   u8g.drawStr( 0, (_LCDML_DISP_font_h * 2), hum);
-  
  } while( u8g.nextPage() );*
- 
- le code est dans le dossier LCDML_u8glib.
- 
- 
- 
- 	COMPTE RENDU SEANCE 4 (18/01/19):
+
+
+
+	COMPTE RENDU SEANCE 4 (18/01/19):
 	
 Aujourd'hui encore des difficultés..
 Avec la petite presentation en vu je me suis dis la veille, tient il faudrait que je pense a verifier si le programme pour l'ESP fonctionne bien . Quelle idee genial puisqu'il s'avere que notre premier ESP etait completement buguer est qu'il fonctionnait quand il avait envie. Je me suis donc atteler au debugage de ce dernier sans grand succes et malgré le nouvel ESP, pas de resultats probans nomplu, surement du a des erreurs dans mon programme qui marchait parfaitement il y a de ca la 1ere seance. Je vais revenir dessu durant la semaine prochaine pour tenter de resoudre ce probleme qui pourait s'averer tres enuyeux puisque L'ESP represente tout de meme la moitiée de notre projet.
 Apres m'etre battu avec l'ESP pendant bien 1h30 et ayant eu un semblant d'amelioration je suis passer a l'etude de l'affichage sur l'ecran 128x64 et encore la de grosses difficultés, notament dans la definition de fonction qui gererons la recuperation des infos locale et en ligne (via SoftwareSerial, dans le meme principe qu'avec le bluetooth).
 
 En clair, une seance qui n'a pas beaucoup avancé de mon coté, heureusement que benjamin a lui terminer la modelisations de nos boitier!
+
+
+
+	COMPTE RENDU SEANCE 5 (06/02/19):
+
+
+Pour notre projet et notamment sur la partie meteo en ligne j'aimerai que l'on puisse choisir la ville via un menu deffilent. Par chance la librairie que nous utilisons propose une fonctionnalité qui me permetterai de faire cela !
+
+Pour l'affichage d'un element sur l'ecran cela fonctionne par couche de menu le code ce presente de la sorte:
+
+  LCDML_add         (0  , LCDML_0         , 1  , "Meteo locale"     , mFunc_tem);      
+  LCDML_add         (1  , LCDML_0_1       , 1  , "Retour"           , mFunc_back);
+  LCDML_add         (2  , LCDML_0         , 2  , "Meteo en Ligne"   , NULL); 
+  LCDML_add         (3  , LCDML_0_2       , 1  , "CHANGER"          , NULL);
+  LCDML_addAdvanced (4  , LCDML_0_2_1     , 1  , NULL,         ""   , mCod_post, 0, _LCDML_TYPE_dynParam);
+  LCDML_add         (5  , LCDML_0_2_1     , 2  , "Retour"           , mFunc_back);
+  LCDML_add         (6  , LCDML_0_2       , 3  , "Retour"           , mFunc_back);
+
+
+Le premier parametre est juste le n° global de l'element, le 2eme est la couche precedente (LCDML_0 etant le root), le 3eme est le n° de l'element sur sa couche : par exemple on a Meteo locale (id global:0/id local:1) qui est sur la premiere couche avec Meteo en ligne (id global:2/id local:2). ces principes d'ID permettent d'attribuer un sous menu a un element en particulier, par exemple CHANGER est un element du sous menu de Meteo en Ligne, donc sa couche précédente est bien LCDML_0_2 (2 étant l'ID local de meteo en ligne).
+
+Pour permettre de creer un menu defilant on utilise LCDML_addAdvenced qui permettent d'ajouter des fonction a affichage dynamique sur un element du menu.
+Le code d'une telle fonction ressemble a ca, sachant que la le fonctionne sur le plan de l'affichage mais je n'arrive pas encore a le faire sauvgarder le nouveau code postale.
+
+void mCod_post(uint8_t line){
+//on initialise les variables necessaires pour l'affichage du message
+  String message = "";
+  String Ville = "Nice"; 
+  String CP = "";
+
+
+  //on initialise les variables pour le curseur
+  int pos=0;
+  int enc=0;
+
+
+  //verifie si le curseur est bien sur la ligne a contenu dynamique
+  if(line==LCDML.MENU_getCursorPos()){
+
+  	//si on est sur la ligne on verifie s'il y a toute interaction avec un des boutons
+    if(LCDML.BT_checkAny()){
+
+    //verifie s'il y a une interaction avec le bouton entrer(click sur l'encodeur)
+      if(LCDML.BT_checkEnter()){
+      	//dans ce cas la on inverse l'etat du scroll de l'ecran (s'il etait activé on le desactive et inversement) cela permet de rester sur la 
+      	//meme ligne pour interagir maintenant avec la fonction dynamique
+          if(LCDML.MENU_getScrollDisableStatus()==0){
+            LCDML.MENU_disScroll();
+          }
+          else{
+            LCDML.MENU_enScroll();
+          }
+          //on reset enter
+          LCDML.BT_resetEnter();
+        }
+      //verifie si on tourne l'encodeur vers la droite
+
+        if(LCDML.BT_checkUp()){
+          if(enc<10){
+            enc++;
+          }
+          else{
+          enc=0;
+          }
+          if(enc==0){
+            Ville="Nice";
+            CP="06600";
+          }
+
+          if(enc==1){
+            Ville="Paris";
+            CP="";
+          }
+        }
+        //on reset up
+          LCDML.BT_resetUp();
+          }
+          
+          //on verifie si on tourne l'encodeur vers la gauche (ici pour l'instant ne sert a rien)
+        if(LCDML.BT_checkDown()){
+          pos++;
+          if(pos>4){
+            pos=0;
+          }
+          LCDML.BT_resetDown();
+        }
+        
+      }
+    
+    //on cree une chaine de caractere dynamique qui change selon la position de l'encodeur et donc de la ville selectionner
+    char codpo[20];
+    message = "CodPost: " + Ville;
+    message.toCharArray(codpo, sizeof(codpo) - 1);
+    char eff[20]="CodPost: ";
+    
+    //on fini par afficher au bon endroit le message variant
+    u8g.drawStr( _LCDML_DISP_box_x0+_LCDML_DISP_font_w + _LCDML_DISP_cur_space_behind,  (_LCDML_DISP_font_h * (1+line)), codpo);
+    u8g.drawStr( _LCDML_DISP_box_x0+_LCDML_DISP_font_w + _LCDML_DISP_cur_space_behind,  (_LCDML_DISP_font_h * (1+line)), eff);
+    
+    
+}

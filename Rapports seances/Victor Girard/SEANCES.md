@@ -124,7 +124,7 @@ En clair, une seance qui n'a pas beaucoup avancé de mon coté, heureusement que
 	COMPTE RENDU SEANCE 5 (06/02/19):
 
 
-Pour notre projet et notamment sur la partie meteo en ligne j'aimerai que l'on puisse choisir la ville via un menu deffilent. Par chance la librairie que nous utilisons propose une fonctionnalité qui me permetterai de faire cela !
+Pour notre projet et notamment sur la partie meteo en ligne j'aimerai que l'on puisse choisir la ville via un menu déroulant. Par chance la librairie que nous utilisons propose une fonctionnalité qui me permetterai de faire cela !
 
 Pour l'affichage d'un element sur l'ecran cela fonctionne par couche de menu le code ce presente de la sorte:
 

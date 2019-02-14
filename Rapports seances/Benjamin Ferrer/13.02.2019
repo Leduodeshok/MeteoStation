@@ -1,0 +1,25 @@
+Pour cette séance je me suis occupé de la connexion de entre les deux cartes. J'ai donc passé du temps (trop) a soudé le cable qui va 
+relier les instruments exterieurs et la carte qui va afficher les infos sur l'écran. je devais donc "trafiquer" un cable téléphonique qui 
+passe des pings de mon arduino a la platine grove. Ensuite j'ai du modifier mon code des instruments exterieux
+C'est a dire, on va passer par la biblothèque Software serial pour faire passer toutes les données puis ensuite pour que la carte 
+comprend que ces données la represent telle type d'instrument. On a decidé d'un peu "triché" car avant chaque donnée on envoie une lettre 
+qui va indiquer a quoi la suite correspond. Un exemple vaut 1000 mots : 
+
+void meassure() {
+  wind_ct = 0;
+  time = millis();
+  attachInterrupt(1, countWind, RISING);
+  delay(1000 * m_time);
+  detachInterrupt(1);
+  wind = (float)wind_ct / (float)m_time * 2.4/3;
+  ////////////////////////envoie/////////////////////////////////
+  ac.print("C");
+  ac.print(wind);
+  
+ Voila le code de l'anemometre j'ai donc supprimé les Serial print puisque maintenant voire sur l'ordinateur les données n'est plus
+ interesant. En premiere partie j'ai le code dit classique qui va recuperer ce que l'anemometre recois. et pour la deuxieme partie 
+ c'est ce que j'envoie par le cable telephonique 
+ ac correspond au nom que j'ai donné a mon SoftwareSerial et d'abord on envoie la lettre "C" puis ensuite la varibla "wind" qui est pour le 
+ cas present la variable contenant la vitesse du vent. Par contre pour une raison obscure je suis obligé de faire 2 << ac.print(...)>>
+ car si j'envoie les 2 informations en même temps a la reception notre carte ne comprend pas c'est d'ailleurs mon objectif de la séance 
+ prochaine. Pour voir si cela ne peut pas nous porter prejudice.

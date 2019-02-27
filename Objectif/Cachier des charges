@@ -1,0 +1,20 @@
+Notre but est de faire une station météorologique autonome.
+Elle aura deux objectifs :
+  -Recuperer, a l'aide d'instruments se situant a l'exterieur, différents paramètres météorologiques.
+  -Recolter sur internet les données météorologiques d'une ville que le client aura au prealable choisie. 
+
+Pour cela on sera doté d'un écran qui sera l'interface entre la machine et le client.
+
+Comme instrument extérieur on aura :
+  -Une girouette ( indiquation de la direction ou souffle le vent).
+  -Une anemomètre (force du vent).
+  -Un pluviomètre (indiquer s'il pleut ou pas, et la precipitation).
+  -Un thermomètre (temperature).
+  -Un capteur d'humidité.
+  
+Les données des instruments exterieur vont transiter par un cable. Et le boitier intérieur va traiter les données 
+et ensuite vont les afficher sur l'ecran.
+
+Pour l'écran On aura le choix entre météo local ou via internet 
+Si météo local va juste afficher les données en temps réél.
+Si météo via internet il faura choisir la ville le code postal et ensuite l'ecran affichera les données recolter via une api

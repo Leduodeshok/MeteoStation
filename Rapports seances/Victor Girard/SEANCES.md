@@ -217,6 +217,101 @@ Le code d'une telle fonction ressemble a ca, sachant que la le fonctionne sur le
     //on fini par afficher au bon endroit le message variant
     u8g.drawStr( _LCDML_DISP_box_x0+_LCDML_DISP_font_w + _LCDML_DISP_cur_space_behind,  (_LCDML_DISP_font_h * (1+line)), codpo);
     u8g.drawStr( _LCDML_DISP_box_x0+_LCDML_DISP_font_w + _LCDML_DISP_cur_space_behind,  (_LCDML_DISP_font_h * (1+line)), eff);
-    
-    
-}
+  	}
+	
+	
+	
+	
+	
+  COMPTE RENDU SEANCE 6 (13/02/19)(en retard):
+
+Cette seance a ete principalement consacrer a la discussion entre les differentes cartes de notre projet.
+Afin de nous "simplifier" la vie et surtout par manque de place sur une seule carte arduino nous avons decider de decouper notre projet en petits modules suivants:
+
+-l'ESP ; qui s'occupe de recuperer la meteo en ligne qui revient sous la forme d'une chaine JSON (cf. CR seance 2).
+-Une carte **(1)** arduino qui s'occupe de recuperer la meteo locale, grace a nos instruments de mesure (vitesse/direction du vent, humidité, temperature,).
+-Une carte **(2)** arduino pour gerer l'affichage de toutes les infos, celle ci gere aussi la creation/disposition des menu (cf. CR seance 5).
+
+
+pour que les cartes puissent discuter entre elles on utilise la librairie SoftwareSerial, compatible arduino nano et ESP32, donc ideal ici.
+Cette librairie fonctionne de la meme maniere que le lorsqu'on utilise le port serie de l'ordi. Pour faire dans les grandes lignes,sur l'esp est la carte **1** on cree un nouveau port serie que l'on nomme comme on veut *(on l'appelera ard. ici)*, on l'initialise, avec ses port RX et TX dediés.
+
+le code s'articule comme suit :
+
+    //on inclue la bibliotheque necessaire a la discussion entre les boards
+    #include<SoftwareSerial.h>
+
+    //on utilise des define ici car plus precis et ne prenans pas de place sur la carte surtout pour des constates qui ne sont pas utilisé dans la loop mais juste pour l'initialisation de la lib
+    #define RX 7
+    #define TX 6
+
+    //on "cree" un port serie qu'on appel esp avec RX pin 7 et TX pin 6
+    SoftwareSerial esp(RX,TX);
+
+    //variables utilisé dans le programme
+    String Ville; 
+    String Temp;
+    String Hum;
+    String Vent;
+    String VentDir;
+
+    void setup() {
+      //on lance le port serie a 9600 bauds, pas besoin de plus, pour afficher sur l'ordinateur les infos recu par l'arduino de l'esp
+      Serial.begin(9600);
+      
+      //on lance le "port serie" virtuelle pour que l'ard. et l'ESP puisse communiquer, idem, 9600 bauds suffisent amplement vu que l'on rafraichit uniquement 1f/sec
+      esp.begin(9600);
+    }
+
+    void loop() {
+
+      //dans la boucle je compare juste chaque caractere pour verifier s'il s'agit d'unz nouvelle info envoyer au format maj+info tel que :Ainfo.
+      char c;
+      int Read=0;
+      boolean first_char =true;
+      String s = "";
+      while (esp.available()) {
+        c = char(esp.read());
+        if(Read!=0){
+        s=s+String(c);
+        }
+        if (first_char){
+          
+          if(c=='C'){
+            Read=1;
+          }
+          if(c=='T'){
+            Read=2;
+          }
+          if(c=='H'){
+            Read=3;
+          }
+          if(c=='V'){
+            Read=4;
+          }
+          if(c=='D'){
+            Read=5;
+          }
+          first_char=false;
+        }
+        
+      }
+
+        switch(Read){
+        case 1:Ville=s;   break;
+        case 2:Temp=s;    break;
+        case 3:Hum=s;     break;
+        case 4:Vent=s;    break;
+        case 5:VentDir=s; break;
+      }
+      Serial.print(Ville);
+      Serial.print(Temp);
+      Serial.print(Hum);
+      Serial.print(Vent);
+      Serial.print(VentDir);
+      
+      
+    }
+
+
+

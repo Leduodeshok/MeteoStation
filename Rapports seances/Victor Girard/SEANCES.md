@@ -1,10 +1,9 @@
-///////////////////////////////////////////////////
-//////////////VICTOR GIRARD////////////////////////
-///////////////////////////////////////////////////
+VICTOR GIRARD
+==
 
 
 COMPTE RENDU SEANCE 1 (14/12/2018):
-==
+--
 
 Premiere seance nous avons donc etabli les grandes lignes du projet:
   une station meteo connectée qui nous permet d'afficher sur un ecran la meteo local 
@@ -25,7 +24,7 @@ J'ai aussi commencé a me panché sur la connection au wifi via l'ESP cependant 
 
 
 COMPTE RENDU SEANCE 2 (18/12/2018):
-==
+--
 
 Durant cette seance je me suis occuper de poursuivre ma partie sur la recuperation de la meteo sur internet.
 
@@ -49,7 +48,7 @@ Une fois cela realiser il a fallut travailler sur la communication entre la cart
 
 
 COMPTE RENDU SEANCE 3 (11/01/19):
-==
+--
 
 Seance un peu compliqué..
 
@@ -115,7 +114,7 @@ par la suite on a plus qu'a affiché chacune de ces chaine de caractere a x=0 et
 
 
 COMPTE RENDU SEANCE 4 (18/01/19):
-==
+--
 
 Aujourd'hui encore des difficultés..
 Avec la petite presentation en vu je me suis dis la veille, tient il faudrait que je pense a verifier si le programme pour l'ESP fonctionne bien . Quelle idee genial puisqu'il s'avere que notre premier ESP etait completement buguer est qu'il fonctionnait quand il avait envie. Je me suis donc atteler au debugage de ce dernier sans grand succes et malgré le nouvel ESP, pas de resultats probans nomplu, surement du a des erreurs dans mon programme qui marchait parfaitement il y a de ca la 1ere seance. Je vais revenir dessu durant la semaine prochaine pour tenter de resoudre ce probleme qui pourait s'averer tres enuyeux puisque L'ESP represente tout de meme la moitiée de notre projet.
@@ -126,7 +125,7 @@ En clair, une seance qui n'a pas beaucoup avancé de mon coté, heureusement que
 
 
 COMPTE RENDU SEANCE 5 (06/02/19):
-==
+--
 
 
 Pour notre projet et notamment sur la partie meteo en ligne j'aimerai que l'on puisse choisir la ville via un menu déroulant. Par chance la librairie que nous utilisons propose une fonctionnalité qui me permetterai de faire cela !
@@ -229,7 +228,7 @@ Le code d'une telle fonction ressemble a ca, sachant que la le fonctionne sur le
 
 
 COMPTE RENDU SEANCE 6 (13/02/19)(en retard):
-==
+--
 
 Cette seance a ete principalement consacrer a la discussion entre les differentes cartes de notre projet.
 Afin de nous "simplifier" la vie et surtout par manque de place sur une seule carte arduino nous avons decider de decouper notre projet en petits modules suivants:
@@ -325,7 +324,7 @@ le code s'articule comme suit :
 
 
 COMPTE RENDU SEANCE 7 (27/02/19):
-==
+--
 
 Objectif du jour, debugger l'ESP qui fait des siennes.
 Je reprend le code de la semaine derniere. du coté de l'ESP on prend le code de pars au quel on ajoute la librairie SoftwareSerial, compatible avec les deux cartes.
@@ -339,6 +338,7 @@ A la fin du code de l'esp on rajoute les lignes suivante (dans la loop):
     ard.println("D"+String(windDir));
   
 qui permet d'envoyer les informations qu'on a selectionné, entre autre ville, temperature, humidité, direction et force du vent.
+
 
 Après quelque ajustement l'esp me fait des siennes, et decide de ne plus fonctionner, a voir dans la semaine si le probleme est du coté du code ou encore du coté materiel.
 
@@ -356,9 +356,7 @@ Nous avons decidé de relié nos deux boitier grace a un cable RJ45(cable intern
 -question d'esthetique.
 
 
-A faire pour la prochaine seance ; 
--
-      
-      reussir enfin la discussion entre les cartes arduino/esp et arduino/arduino, et entamer l'interface final.
+### A faire pour la prochaine seance ; #  
+**reussir enfin la discussion entre les cartes arduino/esp et arduino/arduino, et entamer l'interface final.**
 
 

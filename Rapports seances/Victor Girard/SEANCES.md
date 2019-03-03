@@ -349,8 +349,9 @@ le code est donc tres similaire, on mesure ce que l'on veut puis on envoi les in
 Nous avons decidé de relié nos deux boitier grace a un cable RJ45(cable internet), l'interet ?
 
 -ayant un boitier a l'exterieur et un a l'interieur, il est necessaire d'avoir un cable (long si possible), comportant 4 fils independant au moins pour la comunication entre les deux cartes (RX,TX), et l'alimentation de la deuxieme carte (GND,5V). un cable RJ45 possede 8 fils à l'interieur.
-
+![cf. RJ45__1]()
 -question de modularité/simplicité .A l'interieur sur le boitier de l'ecran, on installe une prise RJ45 recuperer sur une ancienne livebox et ressoudé sur un petit pcb avec des pin male. ce qui nous permetera d'installer les boitier plus simplement.
+![cf.RJ45__2]()
 
 -question d'esthetique.
 

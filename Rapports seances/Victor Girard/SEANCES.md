@@ -4,12 +4,12 @@
 
 
 
-	COMPTE RENDU SEANCE 1 (14/12/2018);
+  COMPTE RENDU SEANCE 1 (14/12/2018);
 
 
 Premiere seance nous avons donc etabli les grandes lignes du projet:
-	une station meteo connectée qui nous permet d'afficher sur un ecran la meteo local 
-	ou d'une ville via le passage d'une api.
+  une station meteo connectée qui nous permet d'afficher sur un ecran la meteo local 
+  ou d'une ville via le passage d'une api.
 
 Pour l'affichage nous utilisons un ecran lcd 128x64 pixels, a la base nous voulions le controlé via un 
 controlleur I2C cependant n'ayant pas trouvé comment utilisé l'I2C nous nous rabatons vers une librairie 
@@ -25,7 +25,7 @@ L'interet d'utiliser le meme branchement que sur la page web ci dessus, c'est qu
 J'ai aussi commencé a me panché sur la connection au wifi via l'ESP cependant il est necessaire d'avoir une wifi avec mot de passe classique et non une page de connection (comme le unice hotspot). Il faut donc que j'approfondisse comment creer une communication entre l'ESP et l'arduino.
 
 
-	COMPTE RENDU SEANCE 2 (18/12/2018);
+  COMPTE RENDU SEANCE 2 (18/12/2018);
 
 
 Durant cette seance je me suis occuper de poursuivre ma partie sur la recuperation de la meteo sur internet.
@@ -49,7 +49,7 @@ Une fois cela realiser il a fallut travailler sur la communication entre la cart
 
 
 
-	COMPTE RENDU SEANCE 3 (11/01/19);
+  COMPTE RENDU SEANCE 3 (11/01/19);
 
 Seance un peu compliqué..
 
@@ -57,29 +57,29 @@ Avec mon binome nous avons bien avancé durant les semaines precedentes, de ce f
 
 Pour nous faciliter la tacher de coder cet ecran nous avons decider de passer par une librairie genial, LCDmenulib2 (plus complette que la LCDmenulib1, logique). Lorsqu'on charge l'exemple de cette librairie compatible avec notre ecran on se retrouve face a une page avec 6 onglet;
 -LCDML_u8glib: le u8glib permet de gerer l'ecran donc tout ce qui touche 
-			a l'affichage de ligne, carré, texte,.... Dans cette partie on doit dans un premier temps entrer les n° des pins utilisés pour l'ecran sur l'arduino, ainsi que creer une "liste" qui permet l'affichage des menu et leur indentation, sous forme "d'ardre". On ajoute donc couche par couche les different item de menu
-			LCDML_add         (0  , LCDML_0         , 1  , "Meteo locale"     , mFunc_tem);       // this menu function can be found on "LCDML_display_menuFunction" tab
-  			LCDML_add         (1  , LCDML_0_1       , 1  , "Retour"           , mFunc_back);
-  			LCDML_add         (2  , LCDML_0         , 2  , "Meteo en Ligne"   , NULL); 
- 			LCDML_add         (3  , LCDML_0_2       , 1  , "CHANGER"          , NULL);
-  			LCDML_addAdvanced (5  , LCDML_0_2_1     , 1  , "Code postale"     , 
-  			LCDML_add         (4  , LCDML_0_2       , 2  , "Retour"           , mFunc_back);
-  			cette liste permet d'afficher le menu de la photo ECRANMENU1_SEANCE3
-  			avec comme premiere couche meteo locale et meteo en ligne (LCDML_0)
+      a l'affichage de ligne, carré, texte,.... Dans cette partie on doit dans un premier temps entrer les n° des pins utilisés pour l'ecran sur l'arduino, ainsi que creer une "liste" qui permet l'affichage des menu et leur indentation, sous forme "d'ardre". On ajoute donc couche par couche les different item de menu
+      LCDML_add         (0  , LCDML_0         , 1  , "Meteo locale"     , mFunc_tem);       // this menu function can be found on "LCDML_display_menuFunction" tab
+        LCDML_add         (1  , LCDML_0_1       , 1  , "Retour"           , mFunc_back);
+        LCDML_add         (2  , LCDML_0         , 2  , "Meteo en Ligne"   , NULL); 
+      LCDML_add         (3  , LCDML_0_2       , 1  , "CHANGER"          , NULL);
+        LCDML_addAdvanced (5  , LCDML_0_2_1     , 1  , "Code postale"     , 
+        LCDML_add         (4  , LCDML_0_2       , 2  , "Retour"           , mFunc_back);
+        cette liste permet d'afficher le menu de la photo ECRANMENU1_SEANCE3
+        avec comme premiere couche meteo locale et meteo en ligne (LCDML_0)
 
 -LCDML_condition; on ne modifie rien ici, il s'agit d'une page de la  
-			librairie qui permet de dire si oui ou non un item est affiché a l'ecran.
+      librairie qui permet de dire si oui ou non un item est affiché a l'ecran.
 
 -LCDML_control; permet de controler de differente maniere la navigation,on se contente de mettre*#define _LCDML_CONTROL_cfg      3*
-			qui dit que nous allons controler le menu avec un encodeur rotetif, ce menu declare donc que tourner vers la droite equivaut a aller en haut, vers la gauche a aller en bas, qu'un clique cours correspond a entrer, et qu'un clique long (+ de 800ms) correspond a retour.
+      qui dit que nous allons controler le menu avec un encodeur rotetif, ce menu declare donc que tourner vers la droite equivaut a aller en haut, vers la gauche a aller en bas, qu'un clique cours correspond a entrer, et qu'un clique long (+ de 800ms) correspond a retour.
 
 -LCDML_display_dynFunction; Menu qui gere la creation des fonction a 
-			affichage dynamique , on s'en servira pour l'affichage du choix du code postale. Mais il me faudra encore un peu de temps pour comprendre le bon fonctionnement de cette partie.
+      affichage dynamique , on s'en servira pour l'affichage du choix du code postale. Mais il me faudra encore un peu de temps pour comprendre le bon fonctionnement de cette partie.
 
 -LCDML_display_menu; On ne change rien ici, il s'agit de la partie qui 
-			gere l'affichage.
+      gere l'affichage.
 
--LCDML_display_menuFunction; Ici on peut implanter les fonctions pour les 			different capteur par exemple. 
+-LCDML_display_menuFunction; Ici on peut implanter les fonctions pour les       different capteur par exemple. 
 
 Dans la seance d'aujourd'hui c'est ce dernier onglet que j'ai modifier pour y implanter une fonction qui recuprer l'humidité et la temperature via le capteur DHT11 pour l'afficher sur l'ecran lorsqu'on est sur le menu principale et qu'on clique sur meteo locale. Le resultat est plutot satisfaisant; les deux données s'actualisent bien en temps reel et les données sont correctes (cf. photo ECRANMENU2_SEANCE3).
 
@@ -111,8 +111,8 @@ par la suite on a plus qu'a affiché chacune de ces chaine de caractere a x=0 et
 
 
 
-	COMPTE RENDU SEANCE 4 (18/01/19):
-	
+  COMPTE RENDU SEANCE 4 (18/01/19):
+  
 Aujourd'hui encore des difficultés..
 Avec la petite presentation en vu je me suis dis la veille, tient il faudrait que je pense a verifier si le programme pour l'ESP fonctionne bien . Quelle idee genial puisqu'il s'avere que notre premier ESP etait completement buguer est qu'il fonctionnait quand il avait envie. Je me suis donc atteler au debugage de ce dernier sans grand succes et malgré le nouvel ESP, pas de resultats probans nomplu, surement du a des erreurs dans mon programme qui marchait parfaitement il y a de ca la 1ere seance. Je vais revenir dessu durant la semaine prochaine pour tenter de resoudre ce probleme qui pourait s'averer tres enuyeux puisque L'ESP represente tout de meme la moitiée de notre projet.
 Apres m'etre battu avec l'ESP pendant bien 1h30 et ayant eu un semblant d'amelioration je suis passer a l'etude de l'affichage sur l'ecran 128x64 et encore la de grosses difficultés, notament dans la definition de fonction qui gererons la recuperation des infos locale et en ligne (via SoftwareSerial, dans le meme principe qu'avec le bluetooth).
@@ -121,7 +121,7 @@ En clair, une seance qui n'a pas beaucoup avancé de mon coté, heureusement que
 
 
 
-	COMPTE RENDU SEANCE 5 (06/02/19):
+  COMPTE RENDU SEANCE 5 (06/02/19):
 
 
 Pour notre projet et notamment sur la partie meteo en ligne j'aimerai que l'on puisse choisir la ville via un menu déroulant. Par chance la librairie que nous utilisons propose une fonctionnalité qui me permetterai de faire cela !
@@ -129,13 +129,13 @@ Pour notre projet et notamment sur la partie meteo en ligne j'aimerai que l'on p
 Pour l'affichage d'un element sur l'ecran cela fonctionne par couche de menu le code ce presente de la sorte:
 
  
-	  LCDML_add         (0  , LCDML_0         , 1  , "Meteo locale"     , mFunc_tem);      
-	  LCDML_add         (1  , LCDML_0_1       , 1  , "Retour"           , mFunc_back);
-	  LCDML_add         (2  , LCDML_0         , 2  , "Meteo en Ligne"   , NULL); 
-	  LCDML_add         (3  , LCDML_0_2       , 1  , "CHANGER"          , NULL);
-	  LCDML_addAdvanced (4  , LCDML_0_2_1     , 1  , NULL,         ""   , mCod_post, 0, _LCDML_TYPE_dynParam);
-	  LCDML_add         (5  , LCDML_0_2_1     , 2  , "Retour"           , mFunc_back);
-	  LCDML_add         (6  , LCDML_0_2       , 3  , "Retour"           , mFunc_back);
+    LCDML_add         (0  , LCDML_0         , 1  , "Meteo locale"     , mFunc_tem);      
+    LCDML_add         (1  , LCDML_0_1       , 1  , "Retour"           , mFunc_back);
+    LCDML_add         (2  , LCDML_0         , 2  , "Meteo en Ligne"   , NULL); 
+    LCDML_add         (3  , LCDML_0_2       , 1  , "CHANGER"          , NULL);
+    LCDML_addAdvanced (4  , LCDML_0_2_1     , 1  , NULL,         ""   , mCod_post, 0, _LCDML_TYPE_dynParam);
+    LCDML_add         (5  , LCDML_0_2_1     , 2  , "Retour"           , mFunc_back);
+    LCDML_add         (6  , LCDML_0_2       , 3  , "Retour"           , mFunc_back);
 
 
 Le premier parametre est juste le n° global de l'element, le 2eme est la couche precedente (LCDML_0 etant le root), le 3eme est le n° de l'element sur sa couche : par exemple on a Meteo locale (id global:0/id local:1) qui est sur la premiere couche avec Meteo en ligne (id global:2/id local:2). ces principes d'ID permettent d'attribuer un sous menu a un element en particulier, par exemple CHANGER est un element du sous menu de Meteo en Ligne, donc sa couche précédente est bien LCDML_0_2 (2 étant l'ID local de meteo en ligne).
@@ -143,28 +143,28 @@ Le premier parametre est juste le n° global de l'element, le 2eme est la couche
 Pour permettre de creer un menu defilant on utilise LCDML_addAdvenced qui permettent d'ajouter des fonction a affichage dynamique sur un element du menu.
 Le code d'une telle fonction ressemble a ca, sachant que la le fonctionne sur le plan de l'affichage mais je n'arrive pas encore a le faire sauvgarder le nouveau code postale.
 
-	void mCod_post(uint8_t line){
-	//on initialise les variables necessaires pour l'affichage du message
-	  String message = "";
-	  String Ville = "Nice"; 
-	  String CP = "";
+  void mCod_post(uint8_t line){
+  //on initialise les variables necessaires pour l'affichage du message
+    String message = "";
+    String Ville = "Nice"; 
+    String CP = "";
 
 
-	  //on initialise les variables pour le curseur
-	  int pos=0;
-	  int enc=0;
+    //on initialise les variables pour le curseur
+    int pos=0;
+    int enc=0;
 
 
-	  //verifie si le curseur est bien sur la ligne a contenu dynamique
-	  if(line==LCDML.MENU_getCursorPos()){
+    //verifie si le curseur est bien sur la ligne a contenu dynamique
+    if(line==LCDML.MENU_getCursorPos()){
   
-  	//si on est sur la ligne on verifie s'il y a toute interaction avec un des boutons
+    //si on est sur la ligne on verifie s'il y a toute interaction avec un des boutons
     if(LCDML.BT_checkAny()){
 
     //verifie s'il y a une interaction avec le bouton entrer(click sur l'encodeur)
       if(LCDML.BT_checkEnter()){
-      	//dans ce cas la on inverse l'etat du scroll de l'ecran (s'il etait activé on le desactive et inversement) cela permet de rester sur la 
-      	//meme ligne pour interagir maintenant avec la fonction dynamique
+        //dans ce cas la on inverse l'etat du scroll de l'ecran (s'il etait activé on le desactive et inversement) cela permet de rester sur la 
+        //meme ligne pour interagir maintenant avec la fonction dynamique
           if(LCDML.MENU_getScrollDisableStatus()==0){
             LCDML.MENU_disScroll();
           }
@@ -217,13 +217,13 @@ Le code d'une telle fonction ressemble a ca, sachant que la le fonctionne sur le
     //on fini par afficher au bon endroit le message variant
     u8g.drawStr( _LCDML_DISP_box_x0+_LCDML_DISP_font_w + _LCDML_DISP_cur_space_behind,  (_LCDML_DISP_font_h * (1+line)), codpo);
     u8g.drawStr( _LCDML_DISP_box_x0+_LCDML_DISP_font_w + _LCDML_DISP_cur_space_behind,  (_LCDML_DISP_font_h * (1+line)), eff);
-  	}
-	
-	
-	
-	
-	
-  COMPTE RENDU SEANCE 6 (13/02/19)(en retard):
+    
+    
+}
+
+
+
+    COMPTE RENDU SEANCE 6 (13/02/19)(en retard):
 
 Cette seance a ete principalement consacrer a la discussion entre les differentes cartes de notre projet.
 Afin de nous "simplifier" la vie et surtout par manque de place sur une seule carte arduino nous avons decider de decouper notre projet en petits modules suivants:
@@ -313,5 +313,43 @@ le code s'articule comme suit :
       
     }
 
+
+
+
+
+
+    COMPTE RENDU SEANCE 7 (27/02/19):
+
+Objectif du jour, debugger l'ESP qui fait des siennes.
+Je reprend le code de la semaine derniere. du coté de l'ESP on prend le code de pars au quel on ajoute la librairie SoftwareSerial, compatible avec les deux cartes.
+Dans le setup on demarre le port serie, on l'appelera ici ard, Ard.begin(9600); cette vitesse est largement suffisante, et puis il faut que l'on mette la meme que du coté de l'arduino.
+A la fin du code de l'esp on rajoute les lignes suivante (dans la loop):
+
+    ard.println("C"+location);
+    ard.println("T"+String(temperature));
+    ard.println("H"+String(humidity));
+    ard.println("V"+String(wind));
+    ard.println("D"+String(windDir));
+  
+qui permet d'envoyer les informations qu'on a selectionné, entre autre ville, temperature, humidité, direction et force du vent.
+
+Après quelque ajustement l'esp me fait des siennes, et decide de ne plus fonctionner, a voir dans la semaine si le probleme est du coté du code ou encore du coté materiel.
+
+
+Je passe à la comunication Arduino/Arduino, afin de discuter entre la carte de l'ecran et celle des instruments de mesures. C'est le meme principe que du coté arduino/esp, de plus, l'arduino est bien moins capricieuse que l'esp !
+le code est donc tres similaire, on mesure ce que l'on veut puis on envoi les info précédé d'un caractere precis.
+
+Nous avons decidé de relié nos deux boitier grace a un cable RJ45(cable internet), l'interet ?
+
+-ayant un boitier a l'exterieur et un a l'interieur, il est necessaire d'avoir un cable (long si possible), comportant 4 fils independant au moins pour la comunication entre les deux cartes (RX,TX), et l'alimentation de la deuxieme carte (GND,5V). un cable RJ45 possede 8 fils à l'interieur.
+
+-question de modularité/simplicité .A l'interieur sur le boitier de l'ecran, on installe une prise RJ45 recuperer sur une ancienne livebox et ressoudé sur un petit pcb avec des pin male. ce qui nous permetera d'installer les boitier plus simplement.
+
+-question d'esthetique.
+
+
+A faire pour la prochaine seance ; 
+      
+      reussir enfin la discussion entre les cartes arduino/esp et arduino/arduino, et entamer l'interface final.
 
 

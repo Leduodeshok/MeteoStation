@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////
 
 
-COMPTE RENDU SEANCE 1 (14/12/2018);
+COMPTE RENDU SEANCE 1 (14/12/2018):
 ==
 
 Premiere seance nous avons donc etabli les grandes lignes du projet:
@@ -24,7 +24,7 @@ L'interet d'utiliser le meme branchement que sur la page web ci dessus, c'est qu
 J'ai aussi commencé a me panché sur la connection au wifi via l'ESP cependant il est necessaire d'avoir une wifi avec mot de passe classique et non une page de connection (comme le unice hotspot). Il faut donc que j'approfondisse comment creer une communication entre l'ESP et l'arduino.
 
 
-COMPTE RENDU SEANCE 2 (18/12/2018);
+COMPTE RENDU SEANCE 2 (18/12/2018):
 ==
 
 Durant cette seance je me suis occuper de poursuivre ma partie sur la recuperation de la meteo sur internet.
@@ -48,7 +48,7 @@ Une fois cela realiser il a fallut travailler sur la communication entre la cart
 
 
 
-COMPTE RENDU SEANCE 3 (11/01/19);
+COMPTE RENDU SEANCE 3 (11/01/19):
 ==
 
 Seance un peu compliqué..

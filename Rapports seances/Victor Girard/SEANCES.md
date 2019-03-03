@@ -15,8 +15,8 @@ la U8Glib qui nous permet de faire a peu pres tous ce qui est necessaire a l'aff
 Contrairement a un ecran a caractere (ex: 16x2) on a beaucoup plus de liberté dans les affichage possible 
 (creer des blocks,les placer ou l'on veut ).
 
-Cette seance etait donc principalement acces sur le fonctionnement de la librairie UG8 grace a une page trouvé sur internet.
-http://www.zonnepanelen.wouterlood.com/an-128x64-graphic-lcd-display-with-st7920-controller-for-the-arduino-displaying-temperature-and-relative-humidity/
+Cette seance etait donc principalement acces sur le fonctionnement de la librairie UG8 grace a [une page](http://www.zonnepanelen.wouterlood.com/an-128x64-graphic-lcd-display-with-st7920-controller-for-the-arduino-displaying-temperature-and-relative-humidity/ "la susdite page") trouvé sur internet.
+
 celui ci reprend les grandes lignes de son code sous forme de texte, que j'ai adapté a l'utilisation des librairies DHT pour pouvoir afficher en live temperature et humitidée que je recupere en temps reel grace a la sonde DHT11(temperature+pression). Les librairies DHT prennent en charges le fais que toutes les infos passent sur un seul fil via du onewire. on recoit donc des "bus" de data.
 L'interet d'utiliser le meme branchement que sur la page web ci dessus, c'est qu'on limite le nombre de fils branchés a l'arduino, ici 3 suffisent pour l'ecran et 1 pour le capteur de temperature (plus 5v et GND pour les deux).
 

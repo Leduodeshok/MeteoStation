@@ -29,7 +29,7 @@ COMPTE RENDU SEANCE 2 (18/12/2018):
 Durant cette seance je me suis occuper de poursuivre ma partie sur la recuperation de la meteo sur internet.
 
 Afin de pouvoir récupérer les informations de météo de n'importe quelle ville du monde nous allons passer par une API. Lorsqu'on utilise son ordinateur, pour avoir des infos on cherche sur un site, qui a en général une interface graphique, cependant son on veut automatiser la recherche et récupération d'info sur tel ou tel sujet (en l'occurrence ici la meteo d'une ville) un programme ne parvient pas a interagir avec l'interface graphique. Dans ce cas la on passe par une API, elle permet de recuperer des informations complètes par le biais de requêtes HTTP/URL simple.
-Dans notre cas nous allons utilisé un site compatible API, il s'agit de https://openweathermap.org/.
+Dans notre cas nous allons utilisé un [site](https://openweathermap.org/ "METETEO") de meteo compatible API.
 Apres avoir créer un compte le site vous attribue une (ou plusieurs) "clé" , cette clé va vous permettre de faire les requetes que vous voulez. Avec un compte gratuit nous sommes tout de même limité :
 -60 requetes par minutes max (largement suffisent a notre échelle)
 -accès a la meteo du moment, ou au prévision sur 5 jours

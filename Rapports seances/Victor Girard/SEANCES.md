@@ -351,6 +351,7 @@ Nous avons decidé de relié nos deux boitier grace a un cable RJ45(cable intern
 
 
 A faire pour la prochaine seance ; 
+-
       
       reussir enfin la discussion entre les cartes arduino/esp et arduino/arduino, et entamer l'interface final.
 

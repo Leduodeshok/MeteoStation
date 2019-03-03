@@ -311,7 +311,9 @@ le code s'articule comme suit :
       Serial.print(VentDir);
       
       
-    }
+   }
+
+....
 
 
 

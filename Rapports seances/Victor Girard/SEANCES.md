@@ -70,8 +70,8 @@ Pour nous faciliter la tacher de coder cet ecran nous avons decider de passer pa
 -LCDML_condition; on ne modifie rien ici, il s'agit d'une page de la  
       librairie qui permet de dire si oui ou non un item est affiché a l'ecran.
 
--LCDML_control; permet de controler de differente maniere la navigation,on se contente de mettre*#define _LCDML_CONTROL_cfg      3*
-      qui dit que nous allons controler le menu avec un encodeur rotetif, ce menu declare donc que tourner vers la droite equivaut a aller en haut, vers la gauche a aller en bas, qu'un clique cours correspond a entrer, et qu'un clique long (+ de 800ms) correspond a retour.
+-LCDML_control; permet de controler de differente maniere la navigation,on se contente de mettre *#define _LCDML_CONTROL_cfg  3*
+qui dit que nous allons controler le menu avec un encodeur rotetif, ce menu declare donc que tourner vers la droite equivaut a aller en haut, vers la gauche a aller en bas, qu'un clique cours correspond a entrer, et qu'un clique long (+ de 800ms) correspond a retour.
 
 -LCDML_display_dynFunction; Menu qui gere la creation des fonction a 
       affichage dynamique , on s'en servira pour l'affichage du choix du code postale. Mais il me faudra encore un peu de temps pour comprendre le bon fonctionnement de cette partie.

@@ -83,7 +83,7 @@ Pour nous faciliter la tacher de coder cet ecran nous avons decider de passer pa
 
 Dans la seance d'aujourd'hui c'est ce dernier onglet que j'ai modifier pour y implanter une fonction qui recuprer l'humidité et la temperature via le capteur DHT11 pour l'afficher sur l'ecran lorsqu'on est sur le menu principale et qu'on clique sur meteo locale. Le resultat est plutot satisfaisant; les deux données s'actualisent bien en temps reel et les données sont correctes 
 
-!https://github.com/Leduodeshok/MeteoStation/blob/rapports-seances/Rapports%20seances/Victor%20Girard/ECRANMENU2_SEANCES3.jpg
+![cf. photo ECRANMENU2_SEANCE3](https://github.com/Leduodeshok/MeteoStation/blob/rapports-seances/Rapports%20seances/Victor%20Girard/ECRANMENU2_SEANCES3.jpg)
 
 Puisque l'affichage est une chaine de caractere dynamique j'utilise la fonction sprintf;
 

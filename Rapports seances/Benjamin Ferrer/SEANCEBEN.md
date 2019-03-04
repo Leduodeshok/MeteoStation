@@ -75,12 +75,11 @@ COMPTE RENDU SEANCE 2 (18/12/18):
 Mon objectif de séance sera de rendre L'anémomètre et la girouette fonctiels
 
 Tout d'abord de la documentation sur comment fonctionne des Modules Grove car l'anémomètre fonctionne avec celui et des connecteurs RJ11
-Je trouve un site :
-https://www.lextronic.fr/temperature-meteo/19999-capteur-anenometre.html
-M'expliquant le montage et pour faire le test (Eteindre la diode quand l'anémomètre tourne) vidéo montrant que cela fonctionne : https://youtu.be/Ru0aI_2J2dI 
+Je trouve un [site](https://www.lextronic.fr/temperature-meteo/19999-capteur-anenometre.html "le susdit site").
+M'expliquant le montage et pour faire le test (Eteindre la diode quand l'anémomètre tourne) [vidéo](https://youtu.be/Ru0aI_2J2dI "la susdite video) montrant que cela fonctionne : 
 J'ai un peu modifier le code car ne fonctionner pas bien aus debut 
 
-Code pour allumer la diode :
+### Code pour allumer la diode : # 
 
 void setup() {
   pinMode(4, OUTPUT);
@@ -154,7 +153,7 @@ Je me suis ensuite consacré de nouveau a l'anémomètre pour que maintenant il 
 allemand son [site](http://www.aeq-web.com/?ref=arduinoide "deutsh kalität").
 
 
-###Code pour l'anémomètre :#
+### Code pour l'anémomètre : #
 
 		const int m_time = 1;  
 		int wind_ct = 0;
@@ -194,7 +193,7 @@ J'ai donc divisé le resultat par 3.
 Pour finir j'ai regroupé les 2 codes et le montage pour que cela soit plus propre.
 ![image](https://github.com/Leduodeshok/MeteoStation/blob/rapports-seances/Rapports%20seances/Benjamin%20Ferrer/18.12.2018/IMG_8142.JPG)
 
-###Code final :#
+### Code final : #
 
 		const int m_time = 1;  
 		int wind_ct = 0;
@@ -271,7 +270,7 @@ Tout marche plutot bien, il reste quand meme a faire des ajustements sur la giro
 Et quand on debranche puis rebranche la carte les valeurs ont tendance a se renitialiser.
 Ce qui va changer changer les directions.
 
-###Ecriture post seance:#
+### Ecriture post seance: #
 
 Pour les indications Nord/EST ...de la girouette.
 le principe est que la girouette renvoie une plage de valeur ( c-a-d : quand elle est dans une certaine position elle renvoie des valeurs 
@@ -341,7 +340,7 @@ Le hic étant que durant toute la séance je me suis principalement documenté s
 J'ai effectué quelques tests trouvé sur internet pour comprendre le principe, et j'ai mit pas mal de temps a comprendre car certains programme de test était bugé et j'ai du les corrigé sauf que le temps de trouver ou se situe l'erreur et comment la corriger sur des notions que je viens d'apprendre ont fait cette séance n'a pas été fructueuse en terme de contenu physique mais plus intellectuelle. 
 
 
-###Update :#
+### Update : #
 
 Normalement nous allons recevoir le pluviomètre avant mercredi je vais pouvoir m'occuper de celui-ci et je retournerai au fablab pour enfin 
 avoir nos boites et faire les ajustements si necessaires. Tant dis que pour l'esp32 Victor a continué de son coté ayant plus de notions que 
@@ -382,7 +381,7 @@ car si j'envoie les 2 informations en même temps a la reception notre carte ne 
 COMPTE RENDU SEANCE 7 (27/02/19):
 --
 
-###Objectif du jour:#
+### Objectif du jour: #
  	pour moi c'était de terminer 2-3 lignes de code des instruments extérieurs pour que lorsque j'envoie les données Elle sait parfaitement se qu'elle reçoit et 	ainsi clarifier les rapports sans pour autant avoir des problèmes de communication Ensuite ayant totalement finie ma partie, j'ai décidé de préparer notre oral et pour cela j'ai commencé a réorganiser notre github Car il y avait plein d'informations plus utile ou pas au bonne endroit ect. C'était donc un travail rébarbatif et assez long mais néanmois nécéssaire. J'ai donc mit les différents plannings sachant que pour le planning final j'ai du me replonger dans tous nos rapports de séance ne l'ayant pas au fur et a mesure, j'ai mit aussi en ligne notre cahier des charges et j'ai fait quelques consignes que vous stipuler dans votre mail (mettre les differents module independant les uns des l'autres ect.) et au final cela m'a pris plus de temps que prévu. C'est pour cela que ma séance ne ressemble pas a un travail (futur) d'ingénieur cela reste néanmoins nécéssaire et cela m'a appris un truc. C'est de faire ce genre de tache de façon periodique et pas tout d'un coup.
 
 

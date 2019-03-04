@@ -76,7 +76,7 @@ Mon objectif de séance sera de rendre L'anémomètre et la girouette fonctiels
 
 Tout d'abord de la documentation sur comment fonctionne des Modules Grove car l'anémomètre fonctionne avec celui et des connecteurs RJ11
 Je trouve un [site](https://www.lextronic.fr/temperature-meteo/19999-capteur-anenometre.html "le susdit site").
-M'expliquant le montage et pour faire le test (Eteindre la diode quand l'anémomètre tourne) [vidéo](https://youtu.be/Ru0aI_2J2dI "la susdite video) montrant que cela fonctionne : 
+M'expliquant le montage et pour faire le test (Eteindre la diode quand l'anémomètre tourne) [vidéo](https://youtu.be/Ru0aI_2J2dI "la susdite video") montrant que cela fonctionne : 
 J'ai un peu modifier le code car ne fonctionner pas bien aus debut 
 
 ### Code pour allumer la diode : # 

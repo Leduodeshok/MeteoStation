@@ -380,3 +380,5 @@ COMPTE RENDU SEANCE 8 (06/03/19):
  ![cf. online.png](https://github.com/Leduodeshok/MeteoStation/blob/rapports-seances/Rapports%20seances/Victor%20Girard/online.jpg)
  
  Lorsqu'on tourne a gauche ou a droite l'encodeur cela fait defiler les info a l'ecran, un simple click permet de retourner au menu precedent.
+Pour reussir la communication dans le sens Ard->ESP il nous faut un Level Shifter,![Level shifter](https://github.com/Leduodeshok/MeteoStation/blob/rapports-seances/Rapports%20seances/Victor%20Girard/Level_shifter.jpg)
+qui evite toute perte du au pont diviseur de tension, car bien que cela parte d'une bonne idee, cela ne fonctionne absolument pas, surement trop de perte. Grace a mon tres cher collegue mazurier qui avait commander ce petit composant, je suis parvenu a reasiler cette fameuse communication qui dorenavant fonctionne parfaitement dans les deux sens.

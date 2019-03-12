@@ -377,6 +377,6 @@ COMPTE RENDU SEANCE 8 (06/03/19):
  J'ai donc changé pour hardware serial, avantage : l'ESP posede 3 port de communication hardware, le port 0 destiné a l'upload des programmes de l'IDE (donc surtout !!NE PAS UTILISER!!), et les ports 1 et 2 utilisable pour les projets.
  Et la, VICTOIRE, plus aucune erreur et redemarage intempestif de l'ESP donc un grand pas dans la com ESP/ARD. Cependant un probleme persiste ; le sens ESP-> Arduino fonctionne sans souci, je recoit bien les chaine de charactere avec les infos de la meteo que j'interprete avec une fonction simple qui li caractere par caractere et en fonction du premier caractere, ce qui suit est stocké dans la variable approprié, jusqu'a arrivé au caractere de fin (ex: si le premier caractere est '$', ce qui suit jusqu'au caractere de fin, dans notre cas le '#', on stock le tout dans la variable temperature). On arrive donc a un resultat comme celui-ci : 
  
- [cf. online.png](https://github.com/Leduodeshok/MeteoStation/blob/rapports-seances/Rapports%20seances/Victor%20Girard/online.jpg)
+ ![cf. online.png](https://github.com/Leduodeshok/MeteoStation/blob/rapports-seances/Rapports%20seances/Victor%20Girard/online.jpg)
  
  Lorsqu'on tourne a gauche ou a droite l'encodeur cela fait defiler les info a l'ecran, un simple click permet de retourner au menu precedent.

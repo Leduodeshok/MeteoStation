@@ -36,7 +36,10 @@ Apres avoir créer un compte le site vous attribue une (ou plusieurs) "clé" , c
 -rafraichissement des données toutes les 2 heures max
 
 Prenons un exemple de requête URL, si on veut la meteo actuelle a Nice;
-http://api.openweathermap.org/data/2.5/weather?q=06000,fr&appid=0494f3cb8bbf30444e7a6042419a7068
+
+
+    http://api.openweathermap.org/data/2.5/weather?q=06000,fr&appid=0494f3cb8bbf30444e7a6042419a7068
+
 
 Cette requête nous renvoi un texte en JSON :
 {"coord":{"lon":7.27,"lat":43.7},"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10n"}],"base":"stations","main":{"temp":276.203,"pressure":949.79,"humidity":90,"temp_min":276.203,"temp_max":276.203,"sea_level":1027.42,"grnd_level":949.79},"wind":{"speed":1.67,"deg":20.0002},"rain":{"3h":2.49},"clouds":{"all":92},"dt":1544993336,"sys":{"message":0.0021,"country":"FR","sunrise":1544943528,"sunset":1544975700},"id":6454924,"name":"Nice","cod":200}

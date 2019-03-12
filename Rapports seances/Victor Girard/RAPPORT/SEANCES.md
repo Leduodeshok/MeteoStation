@@ -363,3 +363,14 @@ Nous avons decidé de relié nos deux boitier grace a un cable RJ45(cable intern
 **reussir enfin la discussion entre les cartes arduino/esp et arduino/arduino, et entamer l'interface final.**
 
 
+
+
+
+COMPTE RENDU SEANCE 8 (06/03/19):
+--
+
+  ### Objectif de cette derniere seance : #
+  **enfin reussir la communication ESP/Arduino!**
+ L'erreur qui me bloque depuis le debut vient du faite que la librairie *SoftwareSerial* fait completement bugger l'ESP, celui ci fait face a de grosse erreur dans le processeur, erreur *illegal definition*. Apres avoir moulte recherché sur le web j'ai trouvé un outil pour l'IDE arduino permettant de traduire toute les Backtrace erreur.
+ ![cf. erreur.png]()
+ J'ai donc utilisé cet outil pour decoder les erreurs, la plus recurante etant une erreur softwareSerial. 

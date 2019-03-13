@@ -386,7 +386,20 @@ COMPTE RENDU SEANCE 7 (27/02/19):
 Pour moi c'était de terminer 2-3 lignes de code des instruments extérieurs pour que lorsque j'envoie les données Elle sait parfaitement se qu'elle reçoit et 	ainsi clarifier les rapports sans pour autant avoir des problèmes de communication Ensuite ayant totalement finie ma partie, j'ai décidé de préparer notre oral et pour cela j'ai commencé a réorganiser notre github Car il y avait plein d'informations plus utile ou pas au bonne endroit ect. C'était donc un travail rébarbatif et assez long mais néanmois nécéssaire. J'ai donc mit les différents plannings sachant que pour le planning final j'ai du me replonger dans tous nos rapports de séance ne l'ayant pas au fur et a mesure, j'ai mit aussi en ligne notre cahier des charges et j'ai fait quelques consignes que vous stipuler dans votre mail (mettre les differents module independant les uns des l'autres ect.) et au final cela m'a pris plus de temps que prévu. C'est pour cela que ma séance ne ressemble pas a un travail (futur) d'ingénieur cela reste néanmoins nécéssaire et cela m'a appris un truc. C'est de faire ce genre de tache de façon periodique et pas tout d'un coup.
 
 
- 	
+COMPTE RENDU SEANCE 8 (06/03/19):
+--
+
+C'est notre derniere séance avant l'oral, pendant que mon camarade tente de resoudre son problème d'esp personnellement je m'occuper 
+de peaufiner les derniers details plus particulierement sur les boitiers. Nous avons pris pour le boitier exterieur, une boite hermétique étant donner qu'il y a des composants electroniques s'il pleut cela peut emdommager nos composants mais cela souleve un problème, le capteur humidité / température se situe dans la boite ext. mais en contact avec les autres composants eclectronique (carte arduino ect.) Or principe physique, tout ce materiel chauffe en fonctionnement ce qui a pour consequence de fausser un peu les mesure du capteur de temperature pour cela j'ai appliquer du scotch pour coller le capteur sur une paroi et tenter de faire une petite cage de protection pour minimiser ce probleme de temperature.
+J'ai du faire quelques branchements diverses et refaire un peu de soudure pour finaliser tout notre projet
+Une fois cela fini je me suis atteler a notre futur oral qui se deroulera la semaine prochaine en commençant par exemple le rapport ecrit qu'il faudra rendre ect.
+
+
+COMPTE RENDU SEANCE 9 (13/03/2019):
+--
+
+
+Fin du projet, Soutenance a l'oral devant le jury. Merci M.Masson et Nassim  Abderrahmane.
 
 
 
